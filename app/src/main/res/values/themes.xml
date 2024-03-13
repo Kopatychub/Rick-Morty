@@ -1,0 +1,9 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.RickAndMorty2" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+         <item name="colorPrimary">@color/bg</item>
+    </style>
+
+    <style name="Theme.RickAndMorty2" parent="Base.Theme.RickAndMorty2" />
+</resources>
