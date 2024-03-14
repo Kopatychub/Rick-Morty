@@ -10,7 +10,7 @@ import androidx.paging.PagedList
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.rickandmorty2.RNM.CharacterData
+import com.example.rickandmorty2.RNM.PersonsList
 
 class MainActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun initViewModel(){
         val viewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
-        viewModel.getRecyclerListObserver()?.observe(this, Observer<PagedList<CharacterData>> {
+        viewModel.getRecyclerListObserver()?.observe(this, Observer<PagedList<PersonsList>> {
             if (it != null){
                 recyckerViewAdapter.submitList(it)
             } else {

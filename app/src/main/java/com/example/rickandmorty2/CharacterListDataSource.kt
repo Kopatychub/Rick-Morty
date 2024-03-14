@@ -1,7 +1,7 @@
 package com.example.rickandmorty2
 
 import androidx.paging.PageKeyedDataSource
-import com.example.rickandmorty2.RNM.CharacterData
+import com.example.rickandmorty2.RNM.PersonsList
 import com.example.rickandmorty2.RNM.RetroInstance
 import com.example.rickandmorty2.RNM.RetroService
 import com.example.rickandmorty2.RNM.RickAndMortyList
@@ -9,9 +9,9 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class CharacterListDataSource(): PageKeyedDataSource<Int, CharacterData>() {
+class CharacterListDataSource(): PageKeyedDataSource<Int, PersonsList>() {
 
-    override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, CharacterData>) {
+    override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, PersonsList>) {
         val  retroInstance = RetroInstance.getRetroInstence().create(RetroService::class.java)
         val call = retroInstance.getDataFromApi(params.key)
         call.enqueue(object : Callback<RickAndMortyList>{
@@ -32,13 +32,13 @@ class CharacterListDataSource(): PageKeyedDataSource<Int, CharacterData>() {
 
     }
 
-    override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, CharacterData>) {
+    override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, PersonsList>) {
 
     }
 
     override fun loadInitial(
         params: LoadInitialParams<Int>,
-        callback: LoadInitialCallback<Int, CharacterData>
+        callback: LoadInitialCallback<Int, PersonsList>
     ) {
         val  retroInstance = RetroInstance.getRetroInstence().create(RetroService::class.java)
         val call = retroInstance.getDataFromApi(1)

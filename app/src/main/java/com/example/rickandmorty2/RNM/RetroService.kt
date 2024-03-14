@@ -8,4 +8,6 @@ interface RetroService {
 
     @GET("character")
     fun getDataFromApi(@Query("page") page: Int) : Call<RickAndMortyList>
+
+
 }

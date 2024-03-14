@@ -9,9 +9,9 @@ import android.widget.TextView
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.rickandmorty2.RNM.CharacterData
+import com.example.rickandmorty2.RNM.PersonsList
 
-class RecyckerViewAdapter: PagedListAdapter<CharacterData, RecyckerViewAdapter.MyViewHolder>(DiffUtilCallBack()) {
+class RecyckerViewAdapter: PagedListAdapter<PersonsList, RecyckerViewAdapter.MyViewHolder>(DiffUtilCallBack()) {
 
 
     class MyViewHolder(view: View):RecyclerView.ViewHolder(view){
@@ -27,7 +27,7 @@ class RecyckerViewAdapter: PagedListAdapter<CharacterData, RecyckerViewAdapter.M
 
 
 
-        fun bind(data: CharacterData){
+        fun bind(data: PersonsList){
             tvName.text = data.name
             tvSpecises.text = data.species
             tvStatus.text = data.status

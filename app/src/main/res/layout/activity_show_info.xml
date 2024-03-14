@@ -6,13 +6,19 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/bg"
-    tools:context=".show_info">
+    tools:context=".ShowInfo">
 
-    <ImageView
-        android:layout_width="match_parent"
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/roundet"
-        android:src="@drawable/img"/>
+        app:cardCornerRadius="8dp">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/roundet"
+            android:src="@drawable/img"
+            />
+    </androidx.cardview.widget.CardView>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -31,24 +37,38 @@
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/imageView"
+                android:id="@+id/is_alive"
                 android:layout_width="9dp"
                 android:layout_height="9dp"
-                android:background="@color/red"
-                android:layout_marginStart="20dp"
-                />
+                android:layout_marginTop="6dp"
+                android:layout_marginEnd="6dp"
+                android:background="@drawable/c_alive"/>
 
             <TextView
+                android:id="@+id/c_status"
+                android:textColor="@color/white"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto"
-                android:layout_marginLeft="20dp"
-                android:text="Rick Sanchez"
-                android:textColor="@color/white"/>
+                android:text="Alive"
+                android:layout_marginBottom="8dp"/>
+
+            <TextView
+                android:textColor="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" - "
+                android:layout_marginBottom="8dp"/>
+
+            <TextView
+                android:id="@+id/c_spacies"
+                android:textColor="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Male"
+                android:layout_marginBottom="8dp"/>
         </LinearLayout>
 
 

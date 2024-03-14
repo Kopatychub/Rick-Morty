@@ -1,14 +1,14 @@
 package com.example.rickandmorty2
 
 import androidx.recyclerview.widget.DiffUtil
-import com.example.rickandmorty2.RNM.CharacterData
+import com.example.rickandmorty2.RNM.PersonsList
 
-class DiffUtilCallBack: DiffUtil.ItemCallback<CharacterData>() {
-    override fun areItemsTheSame(oldItem: CharacterData, newItem: CharacterData): Boolean {
+class DiffUtilCallBack: DiffUtil.ItemCallback<PersonsList>() {
+    override fun areItemsTheSame(oldItem: PersonsList, newItem: PersonsList): Boolean {
         return oldItem.name == newItem.name
     }
 
-    override fun areContentsTheSame(oldItem: CharacterData, newItem: CharacterData): Boolean {
+    override fun areContentsTheSame(oldItem: PersonsList, newItem: PersonsList): Boolean {
         return oldItem.name == newItem.name && oldItem.species == newItem.species
     }
 

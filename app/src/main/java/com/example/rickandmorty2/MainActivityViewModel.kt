@@ -4,13 +4,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
-import com.example.rickandmorty2.RNM.CharacterData
+import com.example.rickandmorty2.RNM.PersonsList
 import java.util.concurrent.Executor
 import java.util.concurrent.Executors
 
 class MainActivityViewModel: ViewModel() {
 
-    private var characterList: LiveData<PagedList<CharacterData>>? = null
+    private var characterList: LiveData<PagedList<PersonsList>>? = null
 
     init {
         initpaging()
@@ -26,12 +26,12 @@ class MainActivityViewModel: ViewModel() {
             .build()
 
         val executor: Executor =  Executors.newFixedThreadPool(5)
-        characterList = LivePagedListBuilder<Int, CharacterData>(factory, config)
+        characterList = LivePagedListBuilder<Int, PersonsList>(factory, config)
             .setFetchExecutor(executor)
             .build()
     }
 
-    fun getRecyclerListObserver(): LiveData<PagedList<CharacterData>>? {
+    fun getRecyclerListObserver(): LiveData<PagedList<PersonsList>>? {
         return characterList
     }
 }
