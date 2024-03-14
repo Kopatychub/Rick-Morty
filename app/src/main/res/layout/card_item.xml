@@ -48,11 +48,12 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
+                    android:id="@+id/is_alive"
                     android:layout_width="9dp"
                     android:layout_height="9dp"
                     android:layout_marginTop="6dp"
                     android:layout_marginEnd="6dp"
-                    android:background="@drawable/circle"/>
+                    android:background="@drawable/c_alive"/>
 
                 <TextView
                     android:id="@+id/c_status"

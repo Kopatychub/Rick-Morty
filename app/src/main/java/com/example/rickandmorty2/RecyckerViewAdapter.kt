@@ -3,7 +3,6 @@ package com.example.rickandmorty2
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -21,6 +20,7 @@ class RecyckerViewAdapter: PagedListAdapter<CharacterData, RecyckerViewAdapter.M
         val tvStatus: TextView = view.findViewById(R.id.c_status)
         val tvLocation: TextView = view.findViewById(R.id.c_location)
         val tvOrigin: TextView = view.findViewById(R.id.c_origin)
+        val tvIndicat: ImageView = view.findViewById(R.id.is_alive)
         val imageThumd: ImageView = view.findViewById(R.id.c_Img)
 
         val persBtn: LinearLayout = view.findViewById(R.id.pers_btn)
@@ -33,6 +33,11 @@ class RecyckerViewAdapter: PagedListAdapter<CharacterData, RecyckerViewAdapter.M
             tvStatus.text = data.status
             tvOrigin.text = data.origin?.name
             tvLocation.text = data.location?.name
+
+            if (data.status == "Alive") tvIndicat.setBackgroundResource(R.drawable.c_alive)
+            else if (data.status == "Dead") tvIndicat.setBackgroundResource(R.drawable.c_dead)
+            else if (data.status == "unknown") tvIndicat.setBackgroundResource(R.drawable.c_unknown)
+
             persBtn.setOnClickListener{
                 println(data.name)
             }
