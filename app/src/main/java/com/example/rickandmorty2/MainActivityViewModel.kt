@@ -14,15 +14,13 @@ class MainActivityViewModel: ViewModel() {
 
     init {
         initpaging()
-
-
     }
 
     private fun initpaging(){
         val factory = CharacterListDataSourseFactory()
         val config = PagedList.Config.Builder()
             .setEnablePlaceholders(false)
-            .setPageSize(30)
+            .setPageSize(20)
             .build()
 
         val executor: Executor =  Executors.newFixedThreadPool(5)
