@@ -8,34 +8,28 @@
     android:background="@color/bg"
     tools:context=".ShowInfo">
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:cardCornerRadius="8dp">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/roundet"
-            android:src="@drawable/img"
-            />
-    </androidx.cardview.widget.CardView>
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/h_img"
+        android:layout_width="340dp"
+        android:layout_height="340dp"
+        app:shapeAppearanceOverlay="@style/topimg"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="16dp">
 
         <TextView
             android:id="@+id/h_nick"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto"
-            android:layout_marginLeft="20dp"
-            android:text="Rick Sanchez"
+            android:text=""
             android:textColor="@color/white"
             android:textSize="35sp"
             android:textStyle="bold" />
-
+        <!--status - species -->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
@@ -49,11 +43,11 @@
                 android:background="@drawable/c_alive"/>
 
             <TextView
-                android:id="@+id/c_status"
+                android:id="@+id/h_status"
                 android:textColor="@color/white"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Alive"
+                android:text=""
                 android:layout_marginBottom="8dp"/>
 
             <TextView
@@ -64,13 +58,101 @@
                 android:layout_marginBottom="8dp"/>
 
             <TextView
-                android:id="@+id/c_spacies"
+                android:id="@+id/h_spacies"
                 android:textColor="@color/white"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Male"
+                android:text=""
                 android:layout_marginBottom="8dp"/>
         </LinearLayout>
+        <!--type-->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Type: "
+                android:textColor="@color/gray"/>
+            <TextView
+                android:id="@+id/h_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/white"/>
+
+        </LinearLayout>
+
+        <!--gender-->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="9dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gender: "
+                android:textColor="@color/gray"/>
+            <TextView
+                android:id="@+id/h_gender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/white"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="9dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Last known location: "
+                android:textColor="@color/gray"/>
+            <TextView
+                android:id="@+id/h_origin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/white"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="First seen in:"
+            android:textSize="20dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/gray"/>
+        <!--origin > [name url]-->
+        <!--location > [name url] > more persons-->
+        <!--episode-->
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/osn">
+        <TextView
+            android:id="@+id/h_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:text=""/>
+
+
 
 
     </LinearLayout>

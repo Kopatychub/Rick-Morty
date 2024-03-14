@@ -2,6 +2,7 @@ package com.example.rickandmorty2
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
 import com.example.rickandmorty2.RNM.PersonsList
 import com.example.rickandmorty2.RNM.RetroInstance
 import com.example.rickandmorty2.RNM.RetroService
@@ -30,6 +31,15 @@ class ShowInfo : AppCompatActivity() {
             val person = personApi.getPerson(getOldItem())
             runOnUiThread{
                 binding.hNick.text = person.name
+                binding.hStatus.text = person.status
+                binding.hSpacies.text = person.species
+                binding.hGender.text = person.gender
+                binding.hLocation.text = person.location?.name
+                binding.hOrigin.text = person.origin?.name
+
+                Glide.with(binding.hImg)
+                    .load(person.image)
+                    .into(binding.hImg)
             }
         }
 
