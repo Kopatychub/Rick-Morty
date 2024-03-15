@@ -24,3 +24,6 @@ data class PersonsList(
         val url: String?
     )
 }
+data class LocationList(
+    val residents: List<String>,
+)

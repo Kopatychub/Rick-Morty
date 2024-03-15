@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.PagedList
@@ -43,11 +42,9 @@ class MainActivity : AppCompatActivity() {
                         intent.putExtra("id", it?.id)
                         startActivity(intent)
                     }
-
                 }
             )
             adapter = recyckerViewAdapter
-
         }
     }
 

@@ -35,6 +35,4 @@ class RecyckerViewAdapter(
 
         holder.binding.persBtn.setOnClickListener { onClickItem(item) }
     }
-
-
 }

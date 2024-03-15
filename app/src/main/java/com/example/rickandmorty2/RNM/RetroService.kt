@@ -13,4 +13,7 @@ interface RetroService {
     @GET("character/{id}")
     suspend fun getPerson(@Path("id") id: Int): PersonsList
 
+    @GET("location/{id}")
+    suspend fun getLocation(@Path("id") id: Int): LocationList
+
 }
