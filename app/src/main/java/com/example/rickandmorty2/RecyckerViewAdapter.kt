@@ -29,6 +29,10 @@ class RecyckerViewAdapter(
         holder.binding.cOrigin.text = item?.origin?.name
         holder.binding.cLocation.text = item?.location?.name
 
+        if (item?.status == "Alive") holder.binding.isAlive.setBackgroundResource(R.drawable.c_alive)
+        else if (item?.status == "Dead") holder.binding.isAlive.setBackgroundResource(R.drawable.c_dead)
+        else if (item?.status == "unknown") holder.binding.isAlive.setBackgroundResource(R.drawable.c_unknown)
+
         Glide.with(holder.binding.cImg)
                 .load(item?.image)
                 .into(holder.binding.cImg)

@@ -9,15 +9,27 @@ import androidx.room.Update
 
 @Dao
 interface PersonDao {
-    @Query("select * from persons")
-    fun getAllPass() : LiveData<List<PersItem>>
+    @Query("select * from persons_base")
+    fun getAllPerson() : LiveData<List<PersItem>>
+
+    @Query("select * from persons_base where name = :name")
+    fun getOnePerson(name: String?) : List<PersItem>
 
     @Update
-    fun updatePass(todoItem: PersItem)
+    fun updatePerson(todoItem: PersItem)
+
+//    @Query("select * from path where id = 1")
+//    fun getPath() : List<PathI>
+
+//    @Insert
+//    fun setPath(pathI: PathI)
 
     @Insert
-    fun addPass(todoItem: PersItem)
+    fun addPerson(todoItem: PersItem)
 
-    @Delete
-    fun deleteTodo(todoItem: PersItem)
+    @Query("delete from persons_base where name = :name")
+    fun deletePerson(name: String?)
+
+    @Query("delete from persons_base")
+    fun cleanTable()
 }

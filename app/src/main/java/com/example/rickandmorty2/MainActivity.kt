@@ -11,6 +11,8 @@ import androidx.paging.PagedList
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.rickandmorty2.DB.MainDB
+import com.example.rickandmorty2.DB.PathI
 import com.example.rickandmorty2.RNM.PersonsList
 import com.example.rickandmorty2.databinding.ActivityMainBinding
 import kotlinx.coroutines.Dispatchers
@@ -21,6 +23,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var recyckerViewAdapter: RecyckerViewAdapter
     lateinit var binding: ActivityMainBinding
+//    lateinit var db: MainDB
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -28,8 +31,9 @@ class MainActivity : AppCompatActivity() {
         recyclerView = findViewById(R.id.recycleView)
         initRecycleView()
         initViewModel()
+//        db = MainDB.getDataBase(this)
+        binding.favouriteBtn.setOnClickListener{startActivity(Intent(this, FavouriteList::class.java))}
     }
-
     private fun initRecycleView() {
         recyclerView.apply {
             layoutManager = LinearLayoutManager(this@MainActivity)
@@ -39,6 +43,8 @@ class MainActivity : AppCompatActivity() {
                 onClickItem = {
                     lifecycleScope.launch(Dispatchers.IO) {
                         val intent = Intent(this@MainActivity, ShowInfo::class.java)
+                        intent.putExtra("isLocal", false)
+                        intent.putExtra("name", it?.name)
                         intent.putExtra("id", it?.id)
                         startActivity(intent)
                     }

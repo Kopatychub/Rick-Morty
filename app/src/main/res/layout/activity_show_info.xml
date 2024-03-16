@@ -37,25 +37,23 @@
                 android:textStyle="bold" />
 
             <ImageView
+                android:id="@+id/h_favBtn"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:src="@drawable/star_off">
 
             </ImageView>
         </LinearLayout>
-
+        <ImageView
+            android:id="@+id/is_alive"
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="6dp"/>
         <!--status - species -->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
-
-            <ImageView
-                android:id="@+id/is_alive"
-                android:layout_width="9dp"
-                android:layout_height="9dp"
-                android:layout_marginTop="6dp"
-                android:layout_marginEnd="6dp"
-                android:background="@drawable/c_alive"/>
 
             <TextView
                 android:id="@+id/h_status"

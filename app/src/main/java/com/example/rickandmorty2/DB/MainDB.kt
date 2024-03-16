@@ -5,7 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database([PersItem::class], version = 1)
+@Database([PersItem::class, PathI::class], version = 2)
 abstract class MainDB : RoomDatabase() {
     abstract fun personDao(): PersonDao
 
@@ -13,7 +13,7 @@ abstract class MainDB : RoomDatabase() {
         var db: MainDB? = null
         fun getDataBase(context: Context): MainDB{
             if(db==null){
-                db = Room.databaseBuilder(context, MainDB::class.java, "presDB").build()
+                db = Room.databaseBuilder(context, MainDB::class.java, "presData").build()
             }
             return db!!
         }
