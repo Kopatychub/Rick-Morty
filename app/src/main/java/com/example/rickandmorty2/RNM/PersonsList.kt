@@ -25,5 +25,7 @@ data class PersonsList(
     )
 }
 data class LocationList(
-    val residents: List<String>,
+    val type: String? = "",
+    val dimension: String?= "",
+    val residents: List<String> = arrayListOf(),
 )

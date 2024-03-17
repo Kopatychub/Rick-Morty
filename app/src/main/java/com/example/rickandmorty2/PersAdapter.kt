@@ -6,9 +6,21 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.rickandmorty2.RNM.RetroService
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.create
 
 class PersAdapter(private val persons: List<String>) : RecyclerView.Adapter<PersAdapter.PersonViewHolder>() {
 
+    val retrofit = Retrofit.Builder()
+        .baseUrl("https://rickandmortyapi.com/api/")
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
+    val personApi = retrofit.create(RetroService::class.java)
     class PersonViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val person: ImageView = itemView.findViewById(R.id.h_pres)
     }
@@ -23,10 +35,13 @@ class PersAdapter(private val persons: List<String>) : RecyclerView.Adapter<Pers
     }
 
     override fun onBindViewHolder(holder: PersonViewHolder, position: Int) {
-//        val pers = persons[position]
+//        CoroutineScope(Dispatchers.IO).launch{
+//            val pers = personApi.getPerson(persons[position].toInt())
+//
+//            Glide.with(holder.person)
+//                .load(pers)
+//                .into(holder.person)
+//        }
 
-//        Glide.with(holder.person)
-//            .load(pers)
-//            .into(holder.person)
     }
 }

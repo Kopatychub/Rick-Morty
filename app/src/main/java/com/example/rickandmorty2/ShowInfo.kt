@@ -3,6 +3,7 @@ package com.example.rickandmorty2
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.drawToBitmap
 import androidx.lifecycle.lifecycleScope
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.rickandmorty2.DB.MainDB
 import com.example.rickandmorty2.DB.PersItem
+import com.example.rickandmorty2.RNM.LocationList
 import com.example.rickandmorty2.RNM.RetroService
 import com.example.rickandmorty2.databinding.ActivityShowInfoBinding
 import kotlinx.coroutines.CoroutineScope
@@ -38,16 +40,23 @@ class ShowInfo : AppCompatActivity() {
             .baseUrl("https://rickandmortyapi.com/api/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
+
         val isLocal = intent.getBooleanExtra("isLocal", false)
 
         val personApi = retrofit.create(RetroService::class.java)
         CoroutineScope(Dispatchers.IO).launch {
+
             if (!isLocal) {
                 println("API")
-
                 val person = personApi.getPerson(getOldItem())
                 val locId = person.location?.url?.split("/")
-                val location = personApi.getLocation(locId!![5].toInt())
+                var location = LocationList()
+                if (locId?.size!! > 1) {
+                    location = personApi.getLocation(locId!!.last().toInt())
+                }
+
+
+                println(location)
                 runOnUiThread {
 //                        println(person.id)
                     binding.hNick.text = person.name
@@ -57,7 +66,10 @@ class ShowInfo : AppCompatActivity() {
                     binding.hLocation.text = person.location?.name
                     binding.hOrigin.text = person.origin?.name
                     binding.hType.text = person.type
-
+                    if (locId?.size!! > 1) {
+                        binding.hLocationType.text = location.type
+                        binding.hLocationDic.text = location.dimension
+                    }
                     if (person.status == "Alive") binding.isAlive.setBackgroundResource(R.drawable.c_alive)
                     else if (person.status == "Dead") binding.isAlive.setBackgroundResource(R.drawable.c_dead)
                     else if (person.status == "unknown") binding.isAlive.setBackgroundResource(R.drawable.c_unknown)
@@ -66,7 +78,7 @@ class ShowInfo : AppCompatActivity() {
                         .load(person.image)
                         .into(binding.hImg)
 
-                    init(location.residents)
+                    init(location.residents)!!
 
                 }
 
@@ -94,7 +106,7 @@ class ShowInfo : AppCompatActivity() {
 
                 }
             }
-
+                println(db.personDao().getOnePerson(binding.hNick.text.toString()).toString())
                 if (db.personDao().getOnePerson(binding.hNick.text.toString()).toString() == "[]") {
                         binding.hFavBtn.setImageResource(R.drawable.star_off)
                 } else {
@@ -114,7 +126,8 @@ class ShowInfo : AppCompatActivity() {
                     location = binding.hLocation.text.toString(),
                     origin = binding.hOrigin.text.toString(),
                     type = binding.hType.text.toString(),
-                    image =  binding.hNick.text.toString().replace(" ", "_")
+                    image =  binding.hNick.text.toString().replace(" ", "_"),
+                    id = intent.getIntExtra("id", 0)
                 )
 
 //                println(db.personDao().getOnePerson(binding.hNick.text.toString()))
@@ -137,7 +150,13 @@ class ShowInfo : AppCompatActivity() {
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
 
-        persAdapter = PersAdapter(presList)
+        var persList = arrayListOf<String>()
+
+        presList.forEach{
+            persList.add(it.split("/").last())
+        }
+
+        persAdapter = PersAdapter(persList)
         recyclerView.adapter = persAdapter
     }
 
