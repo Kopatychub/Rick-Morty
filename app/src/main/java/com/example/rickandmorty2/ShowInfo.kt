@@ -86,7 +86,7 @@ class ShowInfo : AppCompatActivity() {
                 println("LOCAL")
                 val person = db.personDao().getOnePerson(intent.getStringExtra("name"))[0]
 
-//
+                binding.hImg.setImageBitmap(loadPhoto(person.image.toString()))
                 runOnUiThread {
                     binding.hNick.text = person.name
                     binding.hStatus.text = person.status
@@ -96,9 +96,7 @@ class ShowInfo : AppCompatActivity() {
                     binding.hOrigin.text = person.origin
                     binding.hType.text = person.type
                     binding.hFavBtn.setImageResource(R.drawable.star_on)
-                    lifecycleScope.launch(Dispatchers.IO) {
-                        binding.hImg.setImageBitmap(loadPhoto(person.image.toString()))
-                    }
+
 
                     if (person.status == "Alive") binding.isAlive.setBackgroundResource(R.drawable.c_alive)
                     else if (person.status == "Dead") binding.isAlive.setBackgroundResource(R.drawable.c_dead)
