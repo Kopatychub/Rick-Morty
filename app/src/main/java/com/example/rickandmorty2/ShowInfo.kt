@@ -41,6 +41,7 @@ class ShowInfo : AppCompatActivity() {
             .build()
 
         val isLocal = intent.getBooleanExtra("isLocal", false)
+        var imageUrl= ""
 
         val personApi = retrofit.create(RetroService::class.java)
         CoroutineScope(Dispatchers.IO).launch {
@@ -84,7 +85,7 @@ class ShowInfo : AppCompatActivity() {
                 println("LOCAL")
                 val person = db.personDao().getOnePerson(intent.getStringExtra("name"))[0]
                 val img = loadPhoto(person.image.toString())
-
+                imageUrl = person.image_url.toString()
                 runOnUiThread {
                     binding.hNick.text = person.name
                     binding.hStatus.text = person.status
@@ -130,7 +131,7 @@ class ShowInfo : AppCompatActivity() {
                     id = intent.getIntExtra("id", 0),
                     location_dim = binding.hLocationDic.text.toString(),
                     location_type = binding.hLocationType.text.toString(),
-                    image_url = intent.getStringExtra("img_url") ?: ""
+                    image_url = intent.getStringExtra("img_url") ?: imageUrl
                 )
 
 //                println(db.personDao().getOnePerson(binding.hNick.text.toString()))
