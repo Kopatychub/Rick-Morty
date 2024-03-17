@@ -45,6 +45,7 @@ class MainActivity : AppCompatActivity() {
                         val intent = Intent(this@MainActivity, ShowInfo::class.java)
                         intent.putExtra("isLocal", false)
                         intent.putExtra("name", it?.name)
+                        intent.putExtra("img_url", it?.image)
                         intent.putExtra("id", it?.id)
                         startActivity(intent)
                     }

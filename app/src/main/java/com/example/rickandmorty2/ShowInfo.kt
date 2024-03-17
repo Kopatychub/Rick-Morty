@@ -3,7 +3,6 @@ package com.example.rickandmorty2
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.drawToBitmap
 import androidx.lifecycle.lifecycleScope
@@ -55,7 +54,6 @@ class ShowInfo : AppCompatActivity() {
                     location = personApi.getLocation(locId!!.last().toInt())
                 }
 
-
                 println(location)
                 runOnUiThread {
 //                        println(person.id)
@@ -85,8 +83,8 @@ class ShowInfo : AppCompatActivity() {
             } else {
                 println("LOCAL")
                 val person = db.personDao().getOnePerson(intent.getStringExtra("name"))[0]
+                val img = loadPhoto(person.image.toString())
 
-                binding.hImg.setImageBitmap(loadPhoto(person.image.toString()))
                 runOnUiThread {
                     binding.hNick.text = person.name
                     binding.hStatus.text = person.status
@@ -96,11 +94,15 @@ class ShowInfo : AppCompatActivity() {
                     binding.hOrigin.text = person.origin
                     binding.hType.text = person.type
                     binding.hFavBtn.setImageResource(R.drawable.star_on)
-
+                    binding.hLocationDic.text = person.location_dim
+                    binding.hLocationType.text = person.location_type
+                    binding.hImg.setImageBitmap(img)
 
                     if (person.status == "Alive") binding.isAlive.setBackgroundResource(R.drawable.c_alive)
                     else if (person.status == "Dead") binding.isAlive.setBackgroundResource(R.drawable.c_dead)
                     else if (person.status == "unknown") binding.isAlive.setBackgroundResource(R.drawable.c_unknown)
+
+                    binding.root.removeView(binding.persRecyc)
 
                 }
             }
@@ -125,7 +127,10 @@ class ShowInfo : AppCompatActivity() {
                     origin = binding.hOrigin.text.toString(),
                     type = binding.hType.text.toString(),
                     image =  binding.hNick.text.toString().replace(" ", "_"),
-                    id = intent.getIntExtra("id", 0)
+                    id = intent.getIntExtra("id", 0),
+                    location_dim = binding.hLocationDic.text.toString(),
+                    location_type = binding.hLocationType.text.toString(),
+                    image_url = intent.getStringExtra("img_url") ?: ""
                 )
 
 //                println(db.personDao().getOnePerson(binding.hNick.text.toString()))
