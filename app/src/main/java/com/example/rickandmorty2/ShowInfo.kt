@@ -104,15 +104,16 @@ class ShowInfo : AppCompatActivity() {
                     else if (person.status == "unknown") binding.isAlive.setBackgroundResource(R.drawable.c_unknown)
 
                     binding.root.removeView(binding.persRecyc)
+                    binding.rez.text = ""
 
                 }
             }
-                println(db.personDao().getOnePerson(binding.hNick.text.toString()).toString())
-                if (db.personDao().getOnePerson(binding.hNick.text.toString()).toString() == "[]") {
-                        binding.hFavBtn.setImageResource(R.drawable.star_off)
-                } else {
-                        binding.hFavBtn.setImageResource(R.drawable.star_on)
-                }
+            println(db.personDao().getOnePerson(binding.hNick.text.toString()).toString())
+            if (db.personDao().getOnePerson(binding.hNick.text.toString()).toString() == "[]") {
+                binding.hFavBtn.setImageResource(R.drawable.star_off)
+            } else {
+                binding.hFavBtn.setImageResource(R.drawable.star_on)
+            }
 
 
         }
@@ -183,10 +184,10 @@ class ShowInfo : AppCompatActivity() {
     private suspend fun loadPhoto(filename: String) : Bitmap? {
         return withContext(Dispatchers.IO) {
 //            try {
-                val options = BitmapFactory.Options()
-                options.inPreferredConfig = Bitmap.Config.ARGB_8888
-                val filepath = filesDir.path + "/$filename.jpg"
-                return@withContext BitmapFactory.decodeFile(filepath, options)
+            val options = BitmapFactory.Options()
+            options.inPreferredConfig = Bitmap.Config.ARGB_8888
+            val filepath = filesDir.path + "/$filename.jpg"
+            return@withContext BitmapFactory.decodeFile(filepath, options)
 //            } catch (e: IOException) {
 //                e.printStackTrace()
 //                return@withContext
